@@ -1,0 +1,9 @@
+.btnList {
+  display: flex;
+  gap: 6px;
+}
+
+.btn {
+  font-weight: bold;
+  padding: 6px 6px;
+}
