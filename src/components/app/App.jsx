@@ -1,7 +1,7 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 
-import Desc from "../desc/Desc";
+import Description from "../description/Description";
 import Option from "../options/Options";
 import Feedback from "../feedback/Feedback";
 import Notification from "../notification/Notification";
@@ -9,7 +9,9 @@ import Notification from "../notification/Notification";
 const initState = { good: 0, neutral: 0, bad: 0 };
 
 function App() {
-  const [clicks, setClicks] = useState(null);
+  const [clicks, setClicks] = useState(
+    () => JSON.parse(localStorage.getItem("feedback")) ?? initState
+  );
 
   const totalFeedback = clicks ? clicks.good + clicks.neutral + clicks.bad : 0;
   const positivePerc = clicks
@@ -28,15 +30,6 @@ function App() {
   };
 
   useEffect(() => {
-    const init = window.localStorage.getItem("feedback");
-    if (init) {
-      setClicks(JSON.parse(init));
-    } else {
-      setClicks(initState);
-    }
-  }, []);
-
-  useEffect(() => {
     if (clicks) {
       window.localStorage.setItem("feedback", JSON.stringify(clicks));
     }
@@ -44,7 +37,7 @@ function App() {
 
   return (
     <>
-      <Desc />
+      <Description />
       <Option
         updateFeedback={updateFeedback}
         totalFeedback={totalFeedback}

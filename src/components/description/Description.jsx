@@ -1,6 +1,6 @@
-import css from "./Desc.module.css";
+import css from "./Description.module.css";
 
-export default function Desc() {
+export default function Description() {
   return (
     <div className={css.header}>
       <h1 className={css.title}>Sip Happens Café</h1>
